@@ -1,7 +1,7 @@
 FROM            alpine as ngrok
 
 RUN             apk add --no-cache --virtual .bootstrap-deps ca-certificates && \
-                wget -O /tmp/ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip && \
+                wget -O /tmp/ngrok.zip https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-darwin-arm64.zip && \
                 unzip -o /tmp/ngrok.zip -d / && \
                 apk del .bootstrap-deps && \
                 rm -rf /tmp/* && \
@@ -9,7 +9,7 @@ RUN             apk add --no-cache --virtual .bootstrap-deps ca-certificates && 
 
 FROM            busybox:glibc
 
-LABEL           maintainer="Dmitry Shkoliar @shkoliar"
+LABEL           maintainer="@yrck"
 
 COPY            --from=ngrok /ngrok /bin/ngrok
 COPY            start.sh /
